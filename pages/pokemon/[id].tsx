@@ -2,16 +2,7 @@ import { AxiosError } from 'axios';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
-import pokeapi from '../../lib/pokeapi';
-import { Pokeman } from '../../types';
-
-const getPokeman = (id: number): Promise<Pokeman> =>
-  pokeapi.get(`/pokemon/${id}`).then((res) => res.data);
-
-function usePokeman(id: number) {
-  return useQuery(['pokeman', id], () => getPokeman(id));
-}
+import usePokeman from '../../hooks/getPokeman';
 
 const PokemanPage: NextPage = () => {
   const router = useRouter();
